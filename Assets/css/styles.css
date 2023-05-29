@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+/* .start-quiz { */
+
+.questions h1 {
+  font-size: 32px;
+}
+
+.questions li {
+  font-size: 24px;
+  border: plum solid 2px;
+  background-color: plum;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 2px;
+}
+
+.questions li:hover {
+  cursor: pointer;
+  background-color: rgb(136, 83, 136);
+}

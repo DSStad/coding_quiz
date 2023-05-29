@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Assets/css/styles.css" />
+    <title>Coding Quiz</title>
+  </head>
+  <body>
+    <header class="header"><a href="./highscores.html">High Scores</a></header>
+    <main class="container">
+      <section class="quiz-container">
+        <div class="start-quiz">
+          <h1>Coding Quiz Challenge</h1>
+          <p>
+            Try to answer the following code related questions within the time
+            limit. Incorrect answers will penalize your timer & score!
+          </p>
+          <button id="startBtn">Start Quiz</button>
+        </div>
+        <div class="questions"></div>
+        <div class="end-quiz">
+          <!-- insert text or some input form here for initials to store to local storage with initials and score.  -->
+          <form id="score-initials" action="" onsubmit="handleScoreInput()">
+            <label for="initials">Score Entry: <span id="score"></span> </label>
+            <input
+              type="text"
+              id="initials"
+              name="initials"
+              placeholder="Enter Initials"
+            />
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="./Assets/js/script.js"></script>
+  </body>
+</html>

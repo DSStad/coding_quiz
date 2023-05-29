@@ -1,0 +1,40 @@
+/*
+psuedo code
+
+html section variables 
+start with hides
+show quiz sections
+
+small note/alert with correct or wrong on answers
+
+local storage for tracking scores
+
+array of objects with questions. 
+title or question 
+choices array within array of objects
+answer 
+
+sample
+const quiz = [
+    {
+        question: "some question?",
+        choices: ['option1', 'option2', 'option3', 'option4'],
+        answer: 'option3'
+    },
+    {
+        question2... and soo on...
+    }
+]
+
+some sort of click event on each question. 
+
+if statement to check for correct answer. 
+
+some sort of variable to track and guide through questions answers.
+
+different html page for highscore page. 
+
+highscore local storage. 
+parse json stringify keeping track of scores in local storage
+
+*/
