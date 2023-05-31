@@ -8,7 +8,10 @@
     <title>Coding Quiz</title>
   </head>
   <body>
-    <header class="header"><a href="./highscores.html">High Scores</a></header>
+    <header class="header">
+      <a id="high-scores" href="./highscores.html">High Scores</a>
+      <div id="time">Time Left: <span id="timeSpan"></span></div>
+    </header>
     <main class="container">
       <section class="quiz-container">
         <div class="start-quiz">
@@ -21,8 +24,7 @@
         </div>
         <div class="questions"></div>
         <div class="end-quiz">
-          <!-- insert text or some input form here for initials to store to local storage with initials and score.  -->
-          <form id="score-initials" action="" onsubmit="handleScoreInput()">
+          <form id="score-initials" action="./highscores.html">
             <label for="initials">Score Entry: <span id="score"></span> </label>
             <input
               type="text"

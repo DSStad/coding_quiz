@@ -4,9 +4,9 @@ const questionsEl = document.querySelector(".questions");
 const endQuizEl = document.querySelector(".end-quiz");
 const startBtn = document.querySelector("#startBtn");
 const scoreSpan = document.querySelector("#score");
-const scoreList = document.querySelector("#scores-table");
 const initialsForm = document.querySelector("#score-initials");
 const initialInput = document.querySelector("#initials");
+const timeSpan = document.querySelector("#timeSpan");
 
 // establish hidden/showing variable for each element
 startQuizEl.hidden = false;
@@ -15,13 +15,27 @@ endQuizEl.hidden = true;
 
 // set play clock timer/score
 let timer = 75;
+let timerInterval;
+
+function setTime() {
+  // Sets interval in variable
+  timerInterval = setInterval(function () {
+    timer--;
+    timeSpan.textContent = timer;
+    if (timer <= 0) {
+      // Stops execution of action at set interval
+      // Calls function to create and append image
+      gameOver();
+    }
+  }, 1000);
+}
 
 function startQuiz(e) {
   e.preventDefault();
 
   startQuizEl.hidden = true;
   questionsEl.hidden = false;
-
+  setTime();
   runQuestions();
 }
 
@@ -81,13 +95,17 @@ function choiceSelection(e) {
   //   check if answer is correct -- decrement score if not.
   if (userInput !== quiz[trackingIndex].answer) {
     answerComment.textContent = "Incorrect";
-    timer -= 25;
+    if (timer - 25 <= 0) {
+      timer = 0;
+      gameOver();
+    } else {
+      timer -= 25;
+    }
   }
 
   trackingIndex++;
   if (trackingIndex === quiz.length) {
-    questionsEl.hidden = true;
-    endQuizEl.hidden = false;
+    gameOver();
   } else {
     runQuestions();
   }
@@ -95,24 +113,25 @@ function choiceSelection(e) {
   scoreSpan.textContent = timer;
 }
 
-function handleScoreInput() {
+function gameOver() {
+  clearInterval(timerInterval);
+  questionsEl.hidden = true;
+  endQuizEl.hidden = false;
+}
+
+function handleScoreInput(e) {
+  // e.preventDefault();
   let scoreTracker = {
     score: timer,
     initials: initialInput.value,
   };
-  localStorage.setItem("scoreInput", JSON.stringify(scoreTracker));
-  let scoreRecording = JSON.parse(localStorage.getItem)("scoreInput");
-  let newRecord = document.createElement("tr");
-  let scoreTd = document.createElement("td");
-  scoreTd.textContent = scoreRecording.score;
-  let initialsTd = document.createElement("td");
-  initialsTd.textContent = scoreRecording.initials;
+  let scoreRecording = JSON.parse(localStorage.getItem("scoreInput")) || [];
+  scoreRecording.push(scoreTracker);
+  localStorage.setItem("scoreInput", JSON.stringify(scoreRecording));
 
-  newRecord.appendChild(scoreTd);
-  newRecord.appendChild(initialsTd);
-  scoreList.appendChild(newRecord);
+  initialInput.value = "";
 
-  Location.replace("./highscores.html");
+  // window.location.assign("./highscores.html");
 }
 
 startBtn.addEventListener("click", startQuiz);

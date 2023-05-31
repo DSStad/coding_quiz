@@ -23,3 +23,16 @@
   cursor: pointer;
   background-color: rgb(136, 83, 136);
 }
+
+.header {
+  display: flex;
+}
+
+#high-scores {
+  flex: 75%;
+}
+
+#time {
+  align-self: flex-end;
+  flex: 25%;
+}
